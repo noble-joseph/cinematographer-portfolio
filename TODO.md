@@ -5,3 +5,4 @@
 - [x] Update services section to have two parts: "Collaborate with us" and "Visual Story Teller"
 - [x] Update App.css for new layout and styles
 - [x] Push code to GitHub repository
+- [x] Change navbar logo to logo.png from public directory
