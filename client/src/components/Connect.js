@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
+import { settings } from '../data/settings';
 import './Connect.css';
 
 function Connect() {
-  const [formType, setFormType] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     projectType: '',
     budget: '',
-    timeline: '',
-    message: '',
-    artistName: '',
-    collaborationType: '',
-    availability: ''
+    message: ''
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,229 +19,192 @@ function Connect() {
       ...prev,
       [name]: value
     }));
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Construct email subject based on form type
-    const subject = formType === 'collaboration'
-      ? 'Request for Collaboration'
-      : 'Request for Partnership';
-
-    // Construct email body with form details
-    let body = `Form Type: ${formType === 'collaboration' ? 'Collaboration' : 'Hiring'}\n\n`;
-    body += `Name: ${formData.name}\n`;
-    body += `Email: ${formData.email}\n`;
-    if (formData.phone) body += `Phone: ${formData.phone}\n`;
-
-    if (formType === 'hiring') {
-      body += `\nProject Details:\n`;
-      body += `Project Type: ${formData.projectType}\n`;
-      if (formData.budget) body += `Budget Range: ${formData.budget}\n`;
-      if (formData.timeline) body += `Timeline: ${formData.timeline}\n`;
-    } else if (formType === 'collaboration') {
-      body += `\nCollaboration Details:\n`;
-      body += `Artist Name/Brand: ${formData.artistName}\n`;
-      body += `Collaboration Type: ${formData.collaborationType}\n`;
-      if (formData.availability) body += `Availability: ${formData.availability}\n`;
+    
+    const newErrors = validateForm();
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
 
-    body += `\nMessage:\n${formData.message}`;
-
-    // Encode for URL
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-
-    // Create mailto URL
-    const mailtoUrl = `mailto:adithkrishna16@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
-
-    // Open email client
-    window.location.href = mailtoUrl;
+    // Form submission placeholder
+    console.log('Form Data:', formData);
+    alert('Thank you for reaching out! This is a form submission placeholder. Your message has been logged to the console.');
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      projectType: '',
+      budget: '',
+      message: ''
+    });
+    setErrors({});
   };
 
   return (
     <div className="connect-page">
       <header className="connect-header">
-        <h1>Let's Connect</h1>
-        <p>Start your creative journey with us</p>
+        <h1>{settings.connectHeadline}</h1>
+        <p>{settings.connectSubtitle}</p>
       </header>
+
       <main className="connect-main">
-        <form className="connect-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>What brings you here?</label>
-            <div className="radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="formType"
-                  value="collaboration"
-                  onChange={(e) => setFormType(e.target.value)}
-                />
-                Collaboration 
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="formType"
-                  value="hiring"
-                  onChange={(e) => setFormType(e.target.value)}
-                />
-                Hiring 
-              </label>
+        {/* Services Offered - Quick Bullets */}
+        <section className="connect-services">
+          <h2>What I Offer</h2>
+          <ul className="services-bullets">
+            <li>Brand & commercial films</li>
+            <li>Motorsport & adventure content</li>
+            <li>Travel / destination films</li>
+            <li>Design & visual systems</li>
+          </ul>
+        </section>
+
+        {/* Contact Form */}
+        <section className="connect-form-section">
+          <h2>Start a Project</h2>
+          <form className="connect-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className={errors.name ? 'error' : ''}
+              />
+              {errors.name && <span className="error-message">{errors.name}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={errors.email ? 'error' : ''}
+              />
+              {errors.email && <span className="error-message">{errors.email}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="projectType">Project Type</label>
+              <select
+                id="projectType"
+                name="projectType"
+                value={formData.projectType}
+                onChange={handleInputChange}
+              >
+                <option value="">Select project type</option>
+                <option value="brand-film">Brand Film</option>
+                <option value="motorsport-content">Motorsport Content</option>
+                <option value="travel-film">Travel Film</option>
+                <option value="design-system">Design System</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="budget">Budget Range (Optional)</label>
+              <select
+                id="budget"
+                name="budget"
+                value={formData.budget}
+                onChange={handleInputChange}
+              >
+                <option value="">Select budget range</option>
+                <option value="under-5k">Under $5,000</option>
+                <option value="5k-15k">$5,000 - $15,000</option>
+                <option value="15k-30k">$15,000 - $30,000</option>
+                <option value="30k-50k">$30,000 - $50,000</option>
+                <option value="over-50k">Over $50,000</option>
+                <option value="flexible">Flexible / TBD</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="message">Tell me about your project *</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                rows="6"
+                placeholder="Describe your vision, goals, timeline, and any specific requirements..."
+                className={errors.message ? 'error' : ''}
+              ></textarea>
+              {errors.message && <span className="error-message">{errors.message}</span>}
+            </div>
+
+            <button type="submit" className="submit-btn">Send Message</button>
+          </form>
+        </section>
+
+        {/* Direct Contact Info */}
+        <section className="direct-contact">
+          <h3>Or Reach Out Directly</h3>
+          <div className="contact-details">
+            <div className="contact-item">
+              <span className="contact-label">Email:</span>
+              <a href={`mailto:${settings.email}`} className="contact-link">
+                {settings.email}
+              </a>
+            </div>
+            <div className="contact-item">
+              <span className="contact-label">Based in:</span>
+              <span className="contact-value">{settings.location}</span>
             </div>
           </div>
 
-          {formType && (
-            <>
-              <div className="form-group">
-                <label htmlFor="name">Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email">Email *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              {formType === 'hiring' && (
-                <>
-                  <div className="form-group">
-                    <label htmlFor="projectType">Project Type *</label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="">Select project type</option>
-                      <option value="feature-film">Feature Film</option>
-                      <option value="documentary">Documentary</option>
-                      <option value="commercial">Commercial</option>
-                      <option value="music-video">Music Video</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="budget">Budget Range</label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                    >
-                      <option value="">Select budget range</option>
-                      <option value="under-10k">Under $10,000</option>
-                      <option value="10k-50k">$10,000 - $50,000</option>
-                      <option value="50k-100k">$50,000 - $100,000</option>
-                      <option value="over-100k">Over $100,000</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="timeline">Timeline</label>
-                    <input
-                      type="text"
-                      id="timeline"
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleInputChange}
-                      placeholder="e.g., 3 months"
-                    />
-                  </div>
-                </>
-              )}
-
-              {formType === 'collaboration' && (
-                <>
-                  <div className="form-group">
-                    <label htmlFor="artistName">Your Artist Name/Brand *</label>
-                    <input
-                      type="text"
-                      id="artistName"
-                      name="artistName"
-                      value={formData.artistName}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="collaborationType">Type of Collaboration *</label>
-                    <select
-                      id="collaborationType"
-                      name="collaborationType"
-                      value={formData.collaborationType}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      <option value="">Select collaboration type</option>
-                      <option value="barter-collaborations">Barter collaborations</option>
-                      <option value="paid-collaborations">Paid collaborations</option>
-                      <option value="cross-promotion">Cross Promotion</option>
-                      <option value="sponsored-content">Sponsored Content</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="availability">Your Availability</label>
-                    <input
-                      type="text"
-                      id="availability"
-                      name="availability"
-                      value={formData.availability}
-                      onChange={handleInputChange}
-                      placeholder="e.g., Weekends, Flexible"
-                    />
-                  </div>
-                </>
-              )}
-
-              <div className="form-group">
-                <label htmlFor="message">Tell us more about your project/idea *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="5"
-                  required
-                  placeholder="Describe your vision, goals, and any specific requirements..."
-                ></textarea>
-              </div>
-
-              <button type="submit" className="submit-btn">Send Message</button>
-            </>
-          )}
-        </form>
+          <div className="social-links">
+            <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+              Instagram
+            </a>
+            <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+              YouTube
+            </a>
+            <a href={settings.behanceUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+              Behance
+            </a>
+            {settings.vimeoUrl && (
+              <a href={settings.vimeoUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+                Vimeo
+              </a>
+            )}
+          </div>
+        </section>
       </main>
     </div>
   );
