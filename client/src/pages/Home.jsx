@@ -37,10 +37,10 @@ function Home() {
         }}
       >
         <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <p className="hero-tagline">{settings.heroTagline}</p>
-          <h1 className="hero-title">{settings.heroTitle}</h1>
-          <p className="hero-subtitle">{settings.heroSubtitle}</p>
+        <div className="hero-content content-width">
+          <p className="eyebrow">{settings.heroTagline}</p>
+          <h1 className="heading-xl">{settings.heroTitle}</h1>
+          <p className="body-lg" style={{ color: 'var(--text-muted)' }}>{settings.heroSubtitle}</p>
           <div className="hero-buttons">
             <button className="btn-primary" onClick={scrollToPortfolio}>
               Watch Showreel
@@ -54,32 +54,33 @@ function Home() {
 
       <main>
         {/* SECTION 2 — FOUR LANES (IDENTITY GRID) */}
-        <section className="four-lanes">
-          <div className="four-lanes-grid">
+        <section className="section">
+          <div className="four-lanes-grid content-width">
             <div className="lane-card">
-              <h3>Cinematography</h3>
-              <p>Framing motion, light and emotion into cinematic sequences.</p>
+              <h3 className="heading-md">Cinematography</h3>
+              <p className="body-md">Framing motion, light and emotion into cinematic sequences.</p>
             </div>
             <div className="lane-card">
-              <h3>Design</h3>
-              <p>Crafting visual systems, typography and composition that guide the story.</p>
+              <h3 className="heading-md">Design</h3>
+              <p className="body-md">Crafting visual systems, typography and composition that guide the story.</p>
             </div>
             <div className="lane-card">
-              <h3>Travel</h3>
-              <p>Chasing real locations, weather and cultures that ground each frame.</p>
+              <h3 className="heading-md">Travel</h3>
+              <p className="body-md">Chasing real locations, weather and cultures that ground each frame.</p>
             </div>
             <div className="lane-card">
-              <h3>Motorsport Adventurer</h3>
-              <p>Living speed, risk and terrain to capture authentic motorsport energy.</p>
+              <h3 className="heading-md">Motorsport Adventurer</h3>
+              <p className="body-md">Living speed, risk and terrain to capture authentic motorsport energy.</p>
             </div>
           </div>
         </section>
 
         {/* SECTION 3 — FEATURED WORK */}
-        <section className="featured-work">
-          <div className="section-header">
-            <h2>Featured Work</h2>
-            <p className="section-subtext">
+        <section className="section" style={{ background: 'var(--dark-card)' }}>
+          <div className="content-width">
+            <div className="section-header">
+              <h2 className="heading-lg">Featured Work</h2>
+              <p className="body-md section-subtext">
               A glimpse into films, campaigns, and visual systems from the road, track, and city.
             </p>
           </div>
@@ -93,9 +94,9 @@ function Home() {
                   <div className="thumbnail-overlay"></div>
                 </div>
                 <div className="featured-info">
-                  <span className="project-type">{project.type}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.shortDescription}</p>
+                  <span className="body-sm project-type">{project.type}</span>
+                  <h3 className="heading-md">{project.title}</h3>
+                  <p className="body-md">{project.shortDescription}</p>
                 </div>
               </div>
             ))}
@@ -105,19 +106,21 @@ function Home() {
               See All Work
             </Link>
           </div>
+          </div>
         </section>
 
         {/* SECTION 4 — LATEST FIELD LOGS */}
-        <section className="journeys-section">
-          <div className="section-header">
-            <h2>Journeys — Field Logs from the Road & Track</h2>
-          </div>
+        <section className="section">
+          <div className="content-width">
+            <div className="section-header">
+              <h2 className="heading-lg">Journeys — Field Logs from the Road & Track</h2>
+            </div>
           <div className="journeys-grid">
             {latestJourneys.map(journey => (
               <div key={journey.id} className="journey-card">
                 <div className="journey-meta">
-                  <span className="journey-type">{journey.type}</span>
-                  <span className="journey-date">
+                  <span className="body-sm journey-type">{journey.type}</span>
+                  <span className="body-sm journey-date">
                     {new Date(journey.date).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'short', 
@@ -125,9 +128,9 @@ function Home() {
                     })}
                   </span>
                 </div>
-                <h3>{journey.title}</h3>
-                <p className="journey-location">{journey.location}</p>
-                <p className="journey-excerpt">{journey.excerpt}</p>
+                <h3 className="heading-md">{journey.title}</h3>
+                <p className="body-sm journey-location">{journey.location}</p>
+                <p className="body-md journey-excerpt">{journey.excerpt}</p>
                 {journey.distanceKm && (
                   <div className="journey-stats">
                     <span>{journey.distanceKm}km</span>
@@ -142,19 +145,21 @@ function Home() {
               Explore All Journeys
             </Link>
           </div>
+          </div>
         </section>
 
         {/* SECTION 5 — SERVICES / WORK WITH ME */}
-        <section className="services-section">
-          <div className="section-header">
-            <h2>Work With Me</h2>
-            <p className="section-subtext">{settings.connectSubtitle}</p>
-          </div>
+        <section className="section" style={{ background: 'var(--dark-card)' }}>
+          <div className="content-width">
+            <div className="section-header">
+              <h2 className="heading-lg">Work With Me</h2>
+              <p className="body-md section-subtext">{settings.connectSubtitle}</p>
+            </div>
           <div className="services-grid-new">
             {sortedServices.map(service => (
               <div key={service.id} className="service-card-new">
-                <h3>{service.title}</h3>
-                <p>{service.shortDescription}</p>
+                <h3 className="heading-md">{service.title}</h3>
+                <p className="body-md">{service.shortDescription}</p>
               </div>
             ))}
           </div>
@@ -163,16 +168,19 @@ function Home() {
               Start a Project
             </Link>
           </div>
+          </div>
         </section>
 
         {/* SECTION 6 — SOFT FOOTER CTA */}
-        <section className="soft-footer-cta">
-          <p className="cta-text">
+        <section className="section-narrow">
+          <div className="soft-footer-cta content-width-narrow">
+            <p className="body-lg cta-text">
             Looking for cinematic storytelling grounded in real roads, tracks and places?
           </p>
           <Link to="/connect" className="btn-outline">
             Let's Talk
           </Link>
+          </div>
         </section>
       </main>
 

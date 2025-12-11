@@ -170,7 +170,7 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   width: 100%;
   margin-top: 20px;
   font-family: 'Poppins', sans-serif;
@@ -183,10 +183,16 @@
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 
+.submit-btn:active {
+  transform: translateY(0);
+  background: var(--gray-300);
+}
+
 .submit-btn:disabled {
   background: var(--dark-border);
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 /* Direct Contact Section */
@@ -257,6 +263,40 @@
   border-bottom-color: var(--text-light);
 }
 
+@media (max-width: 1024px) {
+  .connect-main {
+    padding: 70px 20px;
+  }
+
+  .connect-header h1 {
+    font-size: 3rem;
+  }
+
+  .connect-header p {
+    font-size: 1.1rem;
+  }
+
+  .connect-form {
+    padding: 35px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 13px 15px;
+    font-size: 0.95rem;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    padding: 15px 35px;
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 768px) {
   .connect-header {
     padding: 80px 20px 40px;
@@ -285,6 +325,22 @@
   .social-links {
     gap: 20px;
   }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -302,6 +358,43 @@
   }
 
   .connect-form {
-    padding: 25px 20px;
+    padding: 25px 15px;
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
+  .contact-details {
+    margin-bottom: 25px;
+  }
+
+  .contact-item {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .social-links {
+    gap: 15px;
+  }
+
+  .social-link {
+    font-size: 0.85rem;
   }
 }
