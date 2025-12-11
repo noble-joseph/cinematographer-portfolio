@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { settings } from '../data/settings';
+import { getSettings } from '../api/settingsApi';
+import { getServices } from '../api/servicesApi';
 import './Connect.css';
 
 function Connect() {
+  const settings = getSettings();
+  const services = getServices();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,10 +85,9 @@ function Connect() {
         <section className="connect-services">
           <h2>What I Offer</h2>
           <ul className="services-bullets">
-            <li>Brand & commercial films</li>
-            <li>Motorsport & adventure content</li>
-            <li>Travel / destination films</li>
-            <li>Design & visual systems</li>
+            {services.map(service => (
+              <li key={service.id}>{service.title}</li>
+            ))}
           </ul>
         </section>
 

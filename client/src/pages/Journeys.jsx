@@ -1,12 +1,10 @@
 import React from 'react';
-import { journeys } from '../data/journeys';
+import { getJourneys } from '../api/journeysApi';
 import '../App.css';
 
 function Journeys() {
-  // Sort journeys by date descending (most recent first)
-  const sortedJourneys = [...journeys].sort((a, b) => 
-    new Date(b.date) - new Date(a.date)
-  );
+  // Get journeys from API layer (already sorted by date descending)
+  const sortedJourneys = getJourneys();
 
   return (
     <div className="App">

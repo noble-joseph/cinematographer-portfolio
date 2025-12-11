@@ -1,23 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { projects } from '../data/projects';
-import { journeys } from '../data/journeys';
-import { services } from '../data/services';
-import { settings } from '../data/settings';
+import { getFeaturedProjects } from '../api/projectsApi';
+import { getLatestJourneys } from '../api/journeysApi';
+import { getServices } from '../api/servicesApi';
+import { getSettings } from '../api/settingsApi';
 import Footer from '../components/Footer';
 import '../App.css';
 
 function Home() {
-  // Filter featured projects
-  const featuredProjects = projects.filter(p => p.isFeatured).slice(0, 4);
-  
-  // Get latest journeys sorted by date descending
-  const latestJourneys = [...journeys]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
-  
-  // Sort services by order field
-  const sortedServices = [...services].sort((a, b) => a.order - b.order);
+  // Get data from API layer
+  const featuredProjects = getFeaturedProjects(4);
+  const latestJourneys = getLatestJourneys(3);
+  const offeredServices = getServices();
+  const settings = getSettings();
 
   const scrollToPortfolio = () => {
     // Smooth scroll behavior for showreel button
@@ -156,7 +151,7 @@ function Home() {
               <p className="body-md section-subtext">{settings.connectSubtitle}</p>
             </div>
           <div className="services-grid-new">
-            {sortedServices.map(service => (
+            {offeredServices.map(service => (
               <div key={service.id} className="service-card-new">
                 <h3 className="heading-md">{service.title}</h3>
                 <p className="body-md">{service.shortDescription}</p>

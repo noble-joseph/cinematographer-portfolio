@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_tag_items",
+  "info": {
+    "displayName": "tag-item"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    }
+  }
+}

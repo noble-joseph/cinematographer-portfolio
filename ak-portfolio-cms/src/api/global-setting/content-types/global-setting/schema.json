@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Global Setting",
+    "description": "Site-wide strings and links"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "heroTitle": { "type": "string" },
+    "heroTagline": { "type": "string" },
+    "heroSubtitle": { "type": "string" },
+    "homeAboutShort": { "type": "richtext" },
+    "connectHeadline": { "type": "string" },
+    "connectSubtitle": { "type": "string" },
+    "location": { "type": "string" },
+    "email": { "type": "email" },
+    "instagramUrl": { "type": "string" },
+    "youtubeUrl": { "type": "string" },
+    "behanceUrl": { "type": "string" }
+  }
+}

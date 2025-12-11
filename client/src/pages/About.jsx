@@ -1,8 +1,9 @@
 import React from 'react';
-import { settings } from '../data/settings';
+import { getSettings } from '../api/settingsApi';
 import '../App.css';
 
 function About() {
+  const settings = getSettings();
   return (
     <div className="App">
       <header className="App-header">

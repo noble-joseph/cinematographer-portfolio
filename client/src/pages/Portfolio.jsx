@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { projects } from '../data/projects';
+import { getProjects, getProjectsByCategory } from '../api/projectsApi';
 import '../App.css';
 
 function Portfolio() {
@@ -8,12 +8,8 @@ function Portfolio() {
   // Define filter categories
   const filterCategories = ['All', 'Cinematography', 'Design', 'Travel', 'Motorsport'];
 
-  // Filter projects based on active filter
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => 
-        project.categories.some(cat => cat.toLowerCase() === activeFilter.toLowerCase())
-      );
+  // Get filtered projects from API layer
+  const filteredProjects = getProjectsByCategory(activeFilter);
 
   return (
     <div className="App">
