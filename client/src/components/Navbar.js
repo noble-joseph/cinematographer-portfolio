@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="nav-container">
         <div className="nav-logo">
           <Link to="/">
-            <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Cinematographer Logo" className="logo" />
+            <img src="https://res.cloudinary.com/dvyccelsj/image/upload/v1765552307/logo_lcnrpn.png" alt="Cinematographer Logo" className="logo" />
           </Link>
         </div>
         <div className="nav-menu">

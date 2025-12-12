@@ -17,7 +17,17 @@ export const journeys = [
     vehicle: "Royal Enfield Himalayan",
     terrain: "Mountain Roads, Ghats",
     thumbnail: "/journeys/midnight-munnar.jpg",
-    relatedProjectId: "proj-006"
+    gallery: [
+      { type: "image", url: "/journeys/midnight-munnar.jpg", caption: "Munnar tea plantations at dawn" },
+      { type: "image", url: "/journeys/midnight-rider.jpg", caption: "The trusty Himalayan" }
+    ],
+    content: "The decision to ride to Munnar was made at 10 PM. By midnight, I was on the road. The Ghats at night are a sensory overload—the smell of wet earth, the drop in temperature, the high beams cutting through the fog. Reaching Top Station just as the sun broke the horizon made every sleepless kilometer worth it.",
+    relatedProjectId: "proj-006",
+    seo: {
+      metaTitle: "Midnight Run to Munnar - Moto Log | Ak Portfolio",
+      metaDescription: "A spontaneous motorcycle trip to Munnar to chase the sunrise.",
+      keywords: "munnar, motorcycle, travel, photography, kerala"
+    }
   },
   {
     id: "journey-002",
@@ -32,7 +42,16 @@ export const journeys = [
     vehicle: null,
     terrain: "Race Track",
     thumbnail: "/journeys/bts-kari.jpg",
-    relatedProjectId: "proj-001"
+    gallery: [
+      { type: "image", url: "/journeys/bts-kari.jpg", caption: "Trackside heat" }
+    ],
+    content: "The heat at Kari Motor Speedway is unforgiving. At 42°C, the tarmac radiates waves that distort long lens shots. We had to innovate with cooling rigs for the RED cameras. The team worked in 15-minute shifts to avoid heat exhaustion. But the shimmer in the air added a layer of intensity to the footage that post-production filters can't replicate.",
+    relatedProjectId: "proj-001",
+    seo: {
+      metaTitle: "BTS: Racing the Light - Production Log | Ak Portfolio",
+      metaDescription: "Behind the scenes of filming diverse motorsport events in extreme heat.",
+      keywords: "bts, filmmaking, production, motorsport, india"
+    }
   },
   {
     id: "journey-003",
@@ -47,7 +66,16 @@ export const journeys = [
     vehicle: "4x4 Support Vehicle",
     terrain: "High Altitude Mountain",
     thumbnail: "/journeys/himalayan-recon.jpg",
-    relatedProjectId: "proj-003"
+    gallery: [
+      { type: "image", url: "/journeys/himalayan-recon.jpg", caption: "Basecamp scouting" }
+    ],
+    content: "Reconnaissance is where the film is truly made. We spent a week just driving up and down the Rohtang Pass, looking for the specific quality of light that hits the north face at dawn. The thin air slows everything down—setup times double, movement is harder. But the silence? The silence is absolute.",
+    relatedProjectId: "proj-003",
+    seo: {
+      metaTitle: "Himalayan Basecamp Recon - Travel Log | Ak Portfolio",
+      metaDescription: "Field notes from scouting filming locations in the high Himalayas.",
+      keywords: "himalayas, scouting, location hunting, travel, filmmaking"
+    }
   },
   {
     id: "journey-004",
@@ -62,7 +90,16 @@ export const journeys = [
     vehicle: null,
     terrain: "Studio",
     thumbnail: "/journeys/revline-process.jpg",
-    relatedProjectId: "proj-004"
+    gallery: [
+      { type: "image", url: "/journeys/revline-process.jpg", caption: "Sketching concepts" }
+    ],
+    content: "Design is an iterative process. For RevLine, we covered the studio walls with hundreds of sketches. We played with kinetic typography, printing frames of motion and scanning them back in to get a 'drag' effect. It's digital design with an analog soul.",
+    relatedProjectId: "proj-004",
+    seo: {
+      metaTitle: "Designing Motion: RevLine Process - Design Log | Ak Portfolio",
+      metaDescription: "A look into the creative process behind the RevLine automotive brand identity.",
+      keywords: "design process, branding, creative, studio, automotive"
+    }
   },
   {
     id: "journey-005",
@@ -77,6 +114,15 @@ export const journeys = [
     vehicle: "Motorcycle",
     terrain: "Coastal Highway",
     thumbnail: "/journeys/coastal-solo.jpg",
-    relatedProjectId: "proj-005"
+    gallery: [
+      { type: "image", url: "/journeys/coastal-solo.jpg", caption: "Coastal highway sunset" }
+    ],
+    content: "There's a specific rhythm to riding the Konkan coast. The road hugs the sea, dipping into fishing villages and rising up to laterite plateaus. Riding solo allows you to stop whenever a frame catches your eye. I met a boat builder in Malvan who has been crafting vessels by hand for 50 years. His story became a central emotional anchor for the 'Coastal Echoes' film.",
+    relatedProjectId: "proj-005",
+    seo: {
+      metaTitle: "Solo Coastal Expedition - Motorcycle Log | Ak Portfolio",
+      metaDescription: "Journal from a solo motorcycle trip along India's Konkan coast.",
+      keywords: "moto travel, solo travel, konkan, photography, india"
+    }
   }
 ];

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getSettings } from '../api/settingsApi';
 import { getServices } from '../api/servicesApi';
 import './Connect.css';
 
 function Connect() {
-  const settings = getSettings();
-  const services = getServices();
+  const [settings, setSettings] = useState(null);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,6 +16,26 @@ function Connect() {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const [globalSettings, serviceList] = await Promise.all([
+          getSettings(),
+          getServices()
+        ]);
+        if (!mounted) return;
+        setSettings(globalSettings);
+        setServices(serviceList);
+      } catch (err) {
+        console.error('Connect data fetch error:', err);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -76,8 +97,8 @@ function Connect() {
   return (
     <div className="connect-page">
       <header className="connect-header">
-        <h1>{settings.connectHeadline}</h1>
-        <p>{settings.connectSubtitle}</p>
+        <h1>{settings?.connectHeadline || 'Let\'s Make Something Bold'}</h1>
+        <p>{settings?.connectSubtitle || 'Available for brand films, motorsport & travel content, visual campaigns, and collaborative projects.'}</p>
       </header>
 
       <main className="connect-main">
@@ -180,27 +201,33 @@ function Connect() {
           <div className="contact-details">
             <div className="contact-item">
               <span className="contact-label">Email:</span>
-              <a href={`mailto:${settings.email}`} className="contact-link">
-                {settings.email}
+              <a href={`mailto:${settings?.email || 'hello@adithkrishna.com'}`} className="contact-link">
+                {settings?.email || 'hello@adithkrishna.com'}
               </a>
             </div>
             <div className="contact-item">
               <span className="contact-label">Based in:</span>
-              <span className="contact-value">{settings.location}</span>
+              <span className="contact-value">{settings?.location || 'Kerala, India'}</span>
             </div>
           </div>
 
           <div className="social-links">
-            <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="social-link">
-              Instagram
-            </a>
-            <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="social-link">
-              YouTube
-            </a>
-            <a href={settings.behanceUrl} target="_blank" rel="noopener noreferrer" className="social-link">
-              Behance
-            </a>
-            {settings.vimeoUrl && (
+            {settings?.instagramUrl && (
+              <a href={settings.instagramUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+                Instagram
+              </a>
+            )}
+            {settings?.youtubeUrl && (
+              <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+                YouTube
+              </a>
+            )}
+            {settings?.behanceUrl && (
+              <a href={settings.behanceUrl} target="_blank" rel="noopener noreferrer" className="social-link">
+                Behance
+              </a>
+            )}
+            {settings?.vimeoUrl && (
               <a href={settings.vimeoUrl} target="_blank" rel="noopener noreferrer" className="social-link">
                 Vimeo
               </a>

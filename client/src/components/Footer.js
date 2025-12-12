@@ -6,13 +6,13 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>Cinematographer Portfolio</h3>
+          <h3>Adithkrishna</h3>
           <p>Crafting visual stories through the lens</p>
         </div>
         <div className="footer-section">
           <h3>Contact</h3>
-          <p>Email: info@cinematographer.com</p>
-          <p>Phone: +1 (555) 123-4567</p>
+          <p>Email: iadithkrishna@gmail.com</p>
+          <p>Phone: +91 9446938028</p>
         </div>
         <div className="footer-section">
           <h3>Follow Me</h3>
@@ -24,7 +24,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2023 Cinematographer Portfolio. All rights reserved.</p>
+        <p>&copy; 2025 Adith Krishna Portfolio. All rights reserved.</p>
       </div>
     </footer>
   );

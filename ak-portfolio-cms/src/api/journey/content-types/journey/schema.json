@@ -11,22 +11,64 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title": { "type": "string", "required": true },
-    "slug": { "type": "uid", "targetField": "title", "required": true },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
     "type": {
       "type": "enumeration",
-      "enum": ["Motorsport Log", "Travel Field Note", "BTS", "Design Note"]
+      "enum": [
+        "Motorsport Log",
+        "Travel Field Note",
+        "BTS",
+        "Design Note"
+      ]
     },
-    "date": { "type": "date" },
-    "location": { "type": "string" },
-    "excerpt": { "type": "string" },
-    "content": { "type": "richtext" },
-    "distanceKm": { "type": "integer" },
-    "elevationGain": { "type": "integer" },
-    "vehicle": { "type": "string" },
-    "terrain": { "type": "string" },
-    "thumbnail": { "type": "media", "multiple": false },
-    "gallery": { "type": "media", "multiple": true },
+    "date": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "distanceKm": {
+      "type": "integer"
+    },
+    "elevationGain": {
+      "type": "integer"
+    },
+    "vehicle": {
+      "type": "string"
+    },
+    "terrain": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
     "relatedProject": {
       "type": "relation",
       "relation": "oneToOne",

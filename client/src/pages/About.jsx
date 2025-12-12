@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSettings } from '../api/settingsApi';
 import '../App.css';
 
 function About() {
-  const settings = getSettings();
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const globalSettings = await getSettings();
+        if (!mounted) return;
+        setSettings(globalSettings);
+      } catch (err) {
+        console.error('About data fetch error:', err);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -108,7 +125,7 @@ function About() {
 
             {/* Contact CTA */}
             <div className="about-cta">
-              <p>Based in {settings.location} — Available for select projects worldwide.</p>
+              <p>Based in {settings?.location || 'Kerala, India'} — Available for select projects worldwide.</p>
               <a href="/connect" className="about-contact-btn">Let's Work Together</a>
             </div>
           </div>

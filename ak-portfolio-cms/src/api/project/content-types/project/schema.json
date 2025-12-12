@@ -11,6 +11,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "seo": {
+      "type": "component",
+      "component": "shared.seo"
+    },
     "title": {
       "type": "string",
       "required": true
@@ -46,6 +50,14 @@
         "files",
         "videos",
         "audios"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "videos"
       ]
     },
     "videoUrl": {

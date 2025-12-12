@@ -441,19 +441,36 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    availability: Schema.Attribute.String;
+    behanceUrl: Schema.Attribute.String;
+    connectHeadline: Schema.Attribute.String;
+    connectSubtitle: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    heroSubtitle: Schema.Attribute.Text;
+    heroTagline: Schema.Attribute.String;
+    heroTitle: Schema.Attribute.String;
+    homeAboutShort: Schema.Attribute.Text;
+    instagramUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::global-setting.global-setting'
     > &
       Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    siteDescription: Schema.Attribute.Text;
+    siteDomain: Schema.Attribute.String;
+    timezone: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    vimeoUrl: Schema.Attribute.String;
+    youtubeUrl: Schema.Attribute.String;
   };
 }
 
@@ -477,7 +494,7 @@ export interface ApiJourneyJourney extends Struct.CollectionTypeSchema {
     distanceKm: Schema.Attribute.Integer;
     elevationGain: Schema.Attribute.Integer;
     excerpt: Schema.Attribute.String;
-    gallery: Schema.Attribute.Media<undefined, true>;
+    gallery: Schema.Attribute.Media<'images' | 'videos', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -490,6 +507,7 @@ export interface ApiJourneyJourney extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::project.project'
     >;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     terrain: Schema.Attribute.String;
     thumbnail: Schema.Attribute.Media;
@@ -520,6 +538,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     fullDescription: Schema.Attribute.RichText;
+    gallery: Schema.Attribute.Media<'images' | 'videos', true>;
     isFeatured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -529,6 +548,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     shortDescription: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;

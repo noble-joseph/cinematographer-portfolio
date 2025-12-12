@@ -4,23 +4,63 @@
   "info": {
     "singularName": "global-setting",
     "pluralName": "global-settings",
-    "displayName": "Global Setting",
-    "description": "Site-wide strings and links"
+    "displayName": "global-setting"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
-    "heroTitle": { "type": "string" },
-    "heroTagline": { "type": "string" },
-    "heroSubtitle": { "type": "string" },
-    "homeAboutShort": { "type": "richtext" },
-    "connectHeadline": { "type": "string" },
-    "connectSubtitle": { "type": "string" },
-    "location": { "type": "string" },
-    "email": { "type": "email" },
-    "instagramUrl": { "type": "string" },
-    "youtubeUrl": { "type": "string" },
-    "behanceUrl": { "type": "string" }
+    "heroTitle": {
+      "type": "string"
+    },
+    "heroTagline": {
+      "type": "string"
+    },
+    "heroSubtitle": {
+      "type": "text"
+    },
+    "homeAboutShort": {
+      "type": "text"
+    },
+    "connectHeadline": {
+      "type": "string"
+    },
+    "connectSubtitle": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "instagramUrl": {
+      "type": "string"
+    },
+    "youtubeUrl": {
+      "type": "string"
+    },
+    "behanceUrl": {
+      "type": "string"
+    },
+    "vimeoUrl": {
+      "type": "string"
+    },
+    "availability": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "siteDescription": {
+      "type": "text"
+    },
+    "siteDomain": {
+      "type": "string"
+    }
   }
 }

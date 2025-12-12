@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ak-portfolio-cms
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_SSL
+        value: "true"
+      # The following should be set in the Render Dashboard securely:
+      # - DATABASE_URL (from Supabase)
+      # - APP_KEYS
+      # - API_TOKEN_SALT
+      # - ADMIN_JWT_SECRET
+      # - TRANSFER_TOKEN_SALT
+      # - JWT_SECRET
+      # - CLOUDINARY_NAME
+      # - CLOUDINARY_KEY
+      # - CLOUDINARY_SECRET
