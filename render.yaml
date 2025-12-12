@@ -20,13 +20,12 @@ services:
         value: "true"
       - key: DATABASE_SSL_REJECT_UNAUTHORIZED
         value: "false"
-      # The following should be set in the Render Dashboard securely:
-      # - DATABASE_URL (from Supabase)
-      # - APP_KEYS
-      # - API_TOKEN_SALT
-      # - ADMIN_JWT_SECRET
-      # - TRANSFER_TOKEN_SALT
-      # - JWT_SECRET
-      # - CLOUDINARY_NAME
-      # - CLOUDINARY_KEY
-      # - CLOUDINARY_SECRET
+
+staticSites:
+  - name: ak-portfolio-client
+    rootDir: client
+    buildCommand: npm install && npm run build
+    publishDir: build
+    envVars:
+      - key: REACT_APP_STRAPI_URL
+        value: https://ak-portfolio-cms.onrender.com
