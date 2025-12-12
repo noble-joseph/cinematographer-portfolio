@@ -21,11 +21,4 @@ services:
       - key: DATABASE_SSL_REJECT_UNAUTHORIZED
         value: "false"
 
-staticSites:
-  - name: ak-portfolio-client
-    rootDir: client
-    buildCommand: npm install && npm run build
-    publishDir: build
-    envVars:
-      - key: REACT_APP_STRAPI_URL
-        value: https://ak-portfolio-cms.onrender.com
+
