@@ -55,7 +55,7 @@ function Home() {
           <section
             className="home-hero"
             style={{
-              backgroundImage: `url(${process.env.PUBLIC_URL}/cinematographer-bg.webp)`,
+              backgroundImage: `url(https://res.cloudinary.com/dvyccelsj/image/upload/f_auto,q_auto,dpr_auto,c_fill,w_1200,h_600/v1765555402/cinematographer-bg.webp_adrlmk.webp)`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center'

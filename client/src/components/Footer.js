@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer-section">
           <h3>Contact</h3>
           <p>Email: iadithkrishna@gmail.com</p>
-          <p>Phone: +91 9446938028</p>
+          <p>Phone: +91 9446938082</p>
         </div>
         <div className="footer-section">
           <h3>Follow Me</h3>
